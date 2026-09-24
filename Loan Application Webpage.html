@@ -1,0 +1,1194 @@
+<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PVP Finance Ltd - Loan Application</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: #f3f6fa;
+            color: #1f2937;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 900px;
+            margin: 35px auto;
+            background: #ffffff;
+            padding: 32px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .subtitle {
+            margin-top: 7px;
+            margin-bottom: 28px;
+            color: #6b7280;
+        }
+
+        .section-title {
+            margin-top: 28px;
+            margin-bottom: 16px;
+            padding-bottom: 9px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+
+        .required {
+            color: #dc2626;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 11px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 7px;
+            font-size: 14px;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .actions {
+            margin-top: 30px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 7px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .error-message {
+            display: none;
+            margin-top: 20px;
+            padding: 14px;
+            border-radius: 7px;
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+        }
+
+        #successPage {
+            display: none;
+            text-align: center;
+            padding: 35px 15px;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: #dcfce7;
+            color: #16a34a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+            font-weight: bold;
+        }
+
+        .success-title {
+            margin: 0;
+            color: #166534;
+            font-size: 30px;
+        }
+
+        .success-text {
+            margin-top: 12px;
+            color: #4b5563;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .application-details {
+            max-width: 520px;
+            margin: 28px auto;
+            padding: 20px;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 9px;
+            text-align: left;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 10px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .detail-value {
+            color: #111827;
+            text-align: right;
+            word-break: break-word;
+        }
+
+        .new-application-btn {
+            max-width: 320px;
+            margin: 10px auto 0;
+        }
+
+        @media (max-width: 650px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full {
+                grid-column: 1;
+            }
+
+            .detail-row {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .detail-value {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- APPLICATION PAGE -->
+    <div id="applicationPage">
+
+        <h1>PVP Finance Ltd</h1>
+
+        <div class="subtitle">
+            Customer Loan Application
+        </div>
+
+        <form id="loanForm">
+
+            <h3 class="section-title">
+                Customer Information
+            </h3>
+
+            <div class="grid">
+
+                <div class="group">
+                    <label>
+                        Customer ID
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="customerId"
+                        placeholder="Example: ABCD84657"
+                        maxlength="20"
+                        required
+                    >
+                </div>
+
+                <div class="group">
+                    <label>
+                        Applicant Name
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="applicantName"
+                        placeholder="Enter applicant name"
+                        required
+                    >
+                </div>
+
+                <div class="group">
+                    <label>
+                        Email
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="example@email.com"
+                        required
+                    >
+                </div>
+
+                <div class="group">
+                    <label>
+                        Phone Number
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="10-digit phone number"
+                        pattern="[0-9]{10}"
+                        maxlength="10"
+                        required
+                    >
+                </div>
+
+            </div>
+
+
+            <h3 class="section-title">
+                Employment & Income
+            </h3>
+
+            <div class="grid">
+
+                <div class="group">
+                    <label>
+                        Employment Type
+                        <span class="required">*</span>
+                    </label>
+
+                    <select id="employmentType" required>
+                        <option value="">
+                            Select employment type
+                        </option>
+
+                        <option value="Salaried">
+                            Salaried
+                        </option>
+
+                        <option value="Self Employed">
+                            Self Employed
+                        </option>
+
+                        <option value="Business Owner">
+                            Business Owner
+                        </option>
+                    </select>
+                </div>
+
+                <div class="group">
+                    <label>
+                        Monthly Income
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="number"
+                        id="monthlyIncome"
+                        min="1"
+                        placeholder="Example: 87000"
+                        required
+                    >
+                </div>
+
+                <div class="group">
+                    <label>
+                        Existing EMI
+                    </label>
+
+                    <input
+                        type="number"
+                        id="existingEMI"
+                        min="0"
+                        value="0"
+                    >
+                </div>
+
+                <div class="group">
+                    <label>
+                        Credit Score
+                    </label>
+
+                    <input
+                        type="number"
+                        id="creditScore"
+                        min="300"
+                        max="900"
+                        placeholder="Example: 742"
+                    >
+                </div>
+
+            </div>
+
+
+            <h3 class="section-title">
+                Loan Details
+            </h3>
+
+            <div class="grid">
+
+                <div class="group">
+                    <label>
+                        Loan Amount
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="number"
+                        id="loanAmount"
+                        min="1"
+                        placeholder="Example: 500000"
+                        required
+                    >
+                </div>
+
+                <div class="group">
+                    <label>
+                        Loan Tenure (Months)
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="number"
+                        id="loanTenure"
+                        min="1"
+                        max="360"
+                        placeholder="Example: 24"
+                        required
+                    >
+                </div>
+
+                <div class="group full">
+                    <label>
+                        Loan Purpose
+                        <span class="required">*</span>
+                    </label>
+
+                    <select id="loanPurpose" required>
+                        <option value="">
+                            Select loan purpose
+                        </option>
+
+                        <option value="Personal">
+                            Personal
+                        </option>
+
+                        <option value="Home">
+                            Home
+                        </option>
+
+                        <option value="Vehicle">
+                            Vehicle
+                        </option>
+
+                        <option value="Education">
+                            Education
+                        </option>
+
+                        <option value="Business">
+                            Business
+                        </option>
+
+                        <option value="Medical">
+                            Medical
+                        </option>
+                    </select>
+                </div>
+
+            </div>
+
+
+            <div class="actions">
+                <button
+                    type="submit"
+                    id="submitButton"
+                >
+                    Submit Loan Application
+                </button>
+            </div>
+
+
+            <div
+                id="errorMessage"
+                class="error-message"
+            ></div>
+
+        </form>
+
+    </div>
+
+
+    <!-- SUCCESS PAGE -->
+    <div id="successPage">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h2 class="success-title">
+            Application Submitted Successfully
+        </h2>
+
+        <div class="success-text">
+            Your loan application has been received successfully
+            and has been submitted for further processing.
+        </div>
+
+
+        <div class="application-details">
+
+            <div class="detail-row">
+
+                <div class="detail-label">
+                    Loan Application ID
+                </div>
+
+                <div
+                    class="detail-value"
+                    id="successLoanApplicationId"
+                ></div>
+
+            </div>
+
+
+            <div class="detail-row">
+
+                <div class="detail-label">
+                    Customer ID
+                </div>
+
+                <div
+                    class="detail-value"
+                    id="successCustomerId"
+                ></div>
+
+            </div>
+
+
+            <div class="detail-row">
+
+                <div class="detail-label">
+                    Application Status
+                </div>
+
+                <div class="detail-value">
+                    Received
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="success-text">
+            Please keep your Loan Application ID
+            for future reference.
+        </div>
+
+
+        <div class="new-application-btn">
+            <button
+                type="button"
+                onclick="startNewApplication()"
+            >
+                Submit Another Application
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    /*
+     * =============================================
+     * AUTOMATION ANYWHERE WEBHOOK
+     * =============================================
+     */
+
+    const WEBHOOK_URL =
+        "https://arbiter-prod-ce.cloud.automationanywhere.digital/webhook/incoming/F6KhAPyHqUZJPAUJPmulnK7SuzcCyxs4qX5T9X4RqrTeEXmEQnnytsf7OHGE7qwG9nwlAzo86a1x1Sc1j1ceQZyWw5G6Z5iVxbj3OKnMSiA6TxW3KB0JOebuKi1liCXu";
+
+
+    const form =
+        document.getElementById("loanForm");
+
+    const submitButton =
+        document.getElementById("submitButton");
+
+    const errorMessage =
+        document.getElementById("errorMessage");
+
+    const applicationPage =
+        document.getElementById("applicationPage");
+
+    const successPage =
+        document.getElementById("successPage");
+
+
+    /*
+     * =============================================
+     * GENERATE LOAN APPLICATION ID
+     * =============================================
+     *
+     * Example:
+     * BLG-20260908-X7K2PQ
+     */
+
+    function generateLoanApplicationId() {
+
+        const now =
+            new Date();
+
+        const year =
+            now.getFullYear();
+
+        const month =
+            String(
+                now.getMonth() + 1
+            ).padStart(2, "0");
+
+        const day =
+            String(
+                now.getDate()
+            ).padStart(2, "0");
+
+        const randomPart =
+            Math.random()
+                .toString(36)
+                .substring(2, 8)
+                .toUpperCase();
+
+
+        return (
+            "BLG-" +
+            year +
+            month +
+            day +
+            "-" +
+            randomPart
+        );
+    }
+
+
+    /*
+     * =============================================
+     * GENERATE IST TIMESTAMP
+     * =============================================
+     *
+     * Example:
+     * 2026-09-08T10:37:25+05:30
+     */
+
+    function getISTTimestamp() {
+
+        const now =
+            new Date();
+
+        const parts =
+            new Intl.DateTimeFormat(
+                "en-GB",
+                {
+                    timeZone: "Asia/Kolkata",
+                    year: "numeric",
+                    month: "2-digit",
+                    day: "2-digit",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit",
+                    hour12: false
+                }
+            ).formatToParts(now);
+
+
+        const getPart = (type) =>
+            parts.find(
+                part => part.type === type
+            )?.value;
+
+
+        return (
+            getPart("year") +
+            "-" +
+            getPart("month") +
+            "-" +
+            getPart("day") +
+            "T" +
+            getPart("hour") +
+            ":" +
+            getPart("minute") +
+            ":" +
+            getPart("second") +
+            "+05:30"
+        );
+    }
+
+
+    /*
+     * =============================================
+     * FORM SUBMISSION
+     * =============================================
+     */
+
+    form.addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+            hideError();
+
+
+            if (!form.checkValidity()) {
+
+                form.reportValidity();
+
+                return;
+            }
+
+
+            const customerId =
+                document
+                    .getElementById("customerId")
+                    .value
+                    .trim()
+                    .toUpperCase();
+
+
+            if (!customerId) {
+
+                showError(
+                    "Customer ID is required."
+                );
+
+                return;
+            }
+
+
+            /*
+             * Generate application ID once per submission
+             */
+
+            const loanApplicationId =
+                generateLoanApplicationId();
+
+
+            /*
+             * =============================================
+             * FINAL PVP Finance Ltd PAYLOAD
+             * =============================================
+             *
+             * {
+             *   loanApplicationId,
+             *   submittedAt,
+             *   application: {...},
+             *   intakeStatus,
+             *   investigationStatus
+             * }
+             */
+
+            const payload = {
+
+                loanApplicationId:
+                    loanApplicationId,
+
+                submittedAt:
+                    getISTTimestamp(),
+
+                application: {
+
+                    customerId:
+                        customerId,
+
+                    applicantName:
+                        document
+                            .getElementById("applicantName")
+                            .value
+                            .trim(),
+
+                    email:
+                        document
+                            .getElementById("email")
+                            .value
+                            .trim(),
+
+                    phone:
+                        document
+                            .getElementById("phone")
+                            .value
+                            .trim(),
+
+                    employmentType:
+                        document
+                            .getElementById("employmentType")
+                            .value,
+
+                    monthlyIncome:
+                        Number(
+                            document
+                                .getElementById("monthlyIncome")
+                                .value
+                        ),
+
+                    existingEMI:
+                        Number(
+                            document
+                                .getElementById("existingEMI")
+                                .value || 0
+                        ),
+
+                    creditScore:
+                        document
+                            .getElementById("creditScore")
+                            .value
+                            ? Number(
+                                document
+                                    .getElementById("creditScore")
+                                    .value
+                              )
+                            : 0,
+
+                    loanAmount:
+                        Number(
+                            document
+                                .getElementById("loanAmount")
+                                .value
+                        ),
+
+                    loanTenure:
+                        Number(
+                            document
+                                .getElementById("loanTenure")
+                                .value
+                        ),
+
+                    loanPurpose:
+                        document
+                            .getElementById("loanPurpose")
+                            .value
+                },
+
+                intakeStatus:
+                    "RECEIVED",
+
+                investigationStatus:
+                    "PENDING"
+            };
+
+
+            /*
+             * =============================================
+             * VALIDATION
+             * =============================================
+             */
+
+            if (
+                payload.application.monthlyIncome <= 0
+            ) {
+
+                showError(
+                    "Monthly income must be greater than zero."
+                );
+
+                return;
+            }
+
+
+            if (
+                payload.application.loanAmount <= 0
+            ) {
+
+                showError(
+                    "Loan amount must be greater than zero."
+                );
+
+                return;
+            }
+
+
+            if (
+                payload.application.existingEMI < 0
+            ) {
+
+                showError(
+                    "Existing EMI cannot be negative."
+                );
+
+                return;
+            }
+
+
+            if (
+                payload.application.creditScore !== 0 &&
+                (
+                    payload.application.creditScore < 300 ||
+                    payload.application.creditScore > 900
+                )
+            ) {
+
+                showError(
+                    "Credit score must be between 300 and 900."
+                );
+
+                return;
+            }
+
+
+            /*
+             * =============================================
+             * LOADING STATE
+             * =============================================
+             */
+
+            submitButton.disabled =
+                true;
+
+            submitButton.textContent =
+                "Submitting Application...";
+
+
+            /*
+             * =============================================
+             * ATTEMPT 1
+             * NORMAL JSON POST
+             * =============================================
+             */
+
+            try {
+
+                await submitNormalRequest(
+                    payload
+                );
+
+
+                showSuccessPage(
+                    loanApplicationId,
+                    customerId
+                );
+
+
+            } catch (normalError) {
+
+
+                console.warn(
+                    "Standard request blocked or failed:",
+                    normalError
+                );
+
+
+                /*
+                 * =============================================
+                 * ATTEMPT 2
+                 * CORS-SAFE FALLBACK
+                 * =============================================
+                 */
+
+                try {
+
+                    await submitCorsSafeRequest(
+                        payload
+                    );
+
+
+                    showSuccessPage(
+                        loanApplicationId,
+                        customerId
+                    );
+
+
+                } catch (fallbackError) {
+
+
+                    console.error(
+                        "Submission failed:",
+                        fallbackError
+                    );
+
+
+                    showError(
+                        getFriendlyErrorMessage(
+                            fallbackError
+                        )
+                    );
+
+
+                    submitButton.disabled =
+                        false;
+
+                    submitButton.textContent =
+                        "Submit Loan Application";
+
+                }
+
+            }
+
+        }
+    );
+
+
+    /*
+     * =============================================
+     * NORMAL JSON REQUEST
+     * =============================================
+     */
+
+    async function submitNormalRequest(
+        payload
+    ) {
+
+        const response =
+            await fetch(
+                WEBHOOK_URL,
+                {
+                    method:
+                        "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify(
+                            payload
+                        )
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Submission failed with HTTP status " +
+                response.status
+            );
+
+        }
+
+    }
+
+
+    /*
+     * =============================================
+     * CORS-SAFE FALLBACK
+     * =============================================
+     */
+
+    async function submitCorsSafeRequest(
+        payload
+    ) {
+
+        await fetch(
+            WEBHOOK_URL,
+            {
+                method:
+                    "POST",
+
+                mode:
+                    "no-cors",
+
+                headers: {
+                    "Content-Type":
+                        "text/plain;charset=UTF-8"
+                },
+
+                body:
+                    JSON.stringify(
+                        payload
+                    )
+            }
+        );
+
+    }
+
+
+    /*
+     * =============================================
+     * SHOW SUCCESS PAGE
+     * =============================================
+     */
+
+    function showSuccessPage(
+        loanApplicationId,
+        customerId
+    ) {
+
+        document
+            .getElementById(
+                "successLoanApplicationId"
+            )
+            .textContent =
+                loanApplicationId;
+
+
+        document
+            .getElementById(
+                "successCustomerId"
+            )
+            .textContent =
+                customerId;
+
+
+        applicationPage.style.display =
+            "none";
+
+
+        successPage.style.display =
+            "block";
+
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+
+    /*
+     * =============================================
+     * START ANOTHER APPLICATION
+     * =============================================
+     */
+
+    function startNewApplication() {
+
+        form.reset();
+
+
+        submitButton.disabled =
+            false;
+
+        submitButton.textContent =
+            "Submit Loan Application";
+
+
+        successPage.style.display =
+            "none";
+
+
+        applicationPage.style.display =
+            "block";
+
+
+        hideError();
+
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+
+    /*
+     * =============================================
+     * FRIENDLY ERROR MESSAGE
+     * =============================================
+     */
+
+    function getFriendlyErrorMessage(
+        error
+    ) {
+
+        if (!navigator.onLine) {
+
+            return (
+                "Your device appears to be offline. " +
+                "Please check your internet connection and try again."
+            );
+
+        }
+
+
+        return (
+            "We were unable to submit your loan application. " +
+            "Please try again."
+        );
+
+    }
+
+
+    /*
+     * =============================================
+     * ERROR HELPERS
+     * =============================================
+     */
+
+    function showError(
+        text
+    ) {
+
+        errorMessage.textContent =
+            text;
+
+        errorMessage.style.display =
+            "block";
+
+    }
+
+
+    function hideError() {
+
+        errorMessage.textContent =
+            "";
+
+        errorMessage.style.display =
+            "none";
+
+    }
+
+</script>
+
+</body>
+</html>
